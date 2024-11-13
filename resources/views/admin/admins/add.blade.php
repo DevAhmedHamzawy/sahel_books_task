@@ -114,4 +114,10 @@
     <!--Internal Fileuploads js-->
     <script src="{{URL::asset('assets/plugins/fileuploads/js/fileupload.js')}}"></script>
     <script src="{{URL::asset('assets/plugins/fileuploads/js/file-upload.js')}}"></script>
+
+    @if(session('toastr_error'))
+        <script>
+            toastr.error("{{ session('toastr_error') }}");
+        </script>
+    @endif
 @endsection

@@ -20,8 +20,8 @@
         <div class="card mg-b-20">
             <div class="card-header pb-0">
                 <div class="d-flex justify-content-between">
-                    <h4 class="card-title mg-b-0">{{ trans('users.users') }}</h4>
-                    <div class="btn btn-primary"><a class="text-white" href="{{ route('users.create') }}">{{ trans('users.add_new_user') }}</a></div>
+                    <h4 class="card-title mg-b-0">{{ trans('user.users') }}</h4>
+                    <div class="btn btn-primary"><a class="text-white" href="{{ route('users.create') }}">{{ trans('user.add_new_user') }}</a></div>
                 </div>
             </div>
             <div class="card-body">
@@ -29,7 +29,7 @@
                     <table id="example" class="table key-buttons text-md-nowrap">
                         <thead>
                             <tr>
-                                {{-- <th class="border-bottom-0">الصورة</th> --}}
+                                <th class="border-bottom-0">{{ trans('dashboard.image') }}</th>
                                 <th class="border-bottom-0">{{ trans('dashboard.name') }}</th>
                                 @canany(['edit_user', 'delete_user'])
                                     <th class="border-bottom-0">{{ trans('dashboard.actions') }}</th>
@@ -45,14 +45,14 @@
                                     @canany(['edit_user', 'delete_user'])
                                         <td class="row pl-3">
                                                 @can('edit_user')
-                                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning">تعديل</a>
+                                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning">{{ trans('dashboard.edit') }}</a>
                                                 @endcan
                                             &nbsp;&nbsp;
                                                 @can('delete_user')
                                                 <form class="pl-3" action="{{ route('users.destroy', $user->id) }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button class="btn btn-danger" type="submit">حذف</button>
+                                                    <button class="btn btn-danger" type="submit">{{ trans('dashboard.delete') }}</button>
                                                 </form>
                                                 @endcan
                                         </td>

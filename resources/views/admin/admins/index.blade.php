@@ -29,7 +29,7 @@
                     <table id="example" class="table key-buttons text-md-nowrap">
                         <thead>
                             <tr>
-                                <th class="border-bottom-0">{{ trans('employees.image') }}</th>
+                                <th class="border-bottom-0">{{ trans('dashboard.image') }}</th>
                                 <th class="border-bottom-0">{{ trans('dashboard.name') }}</th>
                                 @canany(['edit_admin', 'delete_admin'])
                                     <th class="border-bottom-0">{{ trans('dashboard.actions') }}</th>

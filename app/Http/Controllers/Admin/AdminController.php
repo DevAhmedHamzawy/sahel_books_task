@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminRequest;
 use App\Models\Admin;
 use App\Upload\Upload;
 use Illuminate\Http\Request;
@@ -46,20 +47,12 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdminRequest $request)
     {
-
-        $validator = Validator::make($request->all(), ['name' => 'required', 'email' => 'required|email|unique:admins,email', 'role' => 'required', 'password' => 'required|min:8|max:25' , 'main_image' => 'mimes:jpeg,jpg,png,gif|required|max:10000']);
-
-        if($validator->fails()){
-
-            toastr()->error(trans('admin.errors'));
-
-            return redirect()->back()->withInput()->withErrors($validator);
-        }
-
         $request->merge(['password' => bcrypt($request->password), 'image' =>  Upload::uploadImage($request->main_image, 'admins' , $request->name)]);
+
         $admin = Admin::create($request->except('role','main_image'));
+
         $admin->assignRole($request->role);
 
         activity()->log('قام '.auth()->user()->name.'باضافة أدمن جديد'.$admin->name);
@@ -87,21 +80,8 @@ class AdminController extends Controller
      * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Admin $admin)
+    public function update(AdminRequest $request, Admin $admin)
     {
-        $validator = Validator::make($request->all(), ['name' => 'required', 'email' => 'required|email|unique:admins,email,'.$admin->id.',id', 'role' => 'required' , 'main_image' => 'mimes:jpeg,jpg,png,gif|sometimes|max:10000']);
-
-        if($request->password != null)
-        {
-            $validator = Validator::make($request->all(), ['password' => 'sometimes|min:8|max:25']);
-        }
-
-        if($validator->fails()){
-            toastr()->error(trans('admin.errors'));
-
-            return redirect()->back()->withErrors($validator);
-        }
-
         if($request->password != null){
             $request->merge(['password' => bcrypt($request->password)]);
         }else{

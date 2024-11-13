@@ -15,7 +15,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="main-content-label mg-b-5">
-                        التعديل على المستخدم  {{ $user->name }}
+                        {{ trans('user.update_user') }} {{ $user->name }}
                     </div>
                     <form action="{{ route('users.update', $user->id) }}" method="post" enctype="multipart/form-data">
                         @method('PATCH')
@@ -32,8 +32,8 @@
 
                                 <div class="col-md-12 mg-t-10 mg-md-t-0">
                                     <div class="form-group">
-                                        <p class="mg-b-10">الاسم</p>
-                                        <input class="form-control @error('name') is-invalid @enderror" placeholder="الاسم" type="text" name="name" value="{{ $user->name }}">
+                                        <p class="mg-b-10">{{ trans('user.name') }}</p>
+                                        <input class="form-control @error('name') is-invalid @enderror" placeholder="{{ trans('user.name') }}" type="text" name="name" value="{{ $user->name }}">
                                         @error('name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -44,8 +44,8 @@
 
                                 <div class="col-md-12 mg-t-10 mg-md-t-0">
                                     <div class="form-group">
-                                        <p class="mg-b-10">البريد الالكتروني</p>
-                                        <input class="form-control @error('email') is-invalid @enderror" placeholder="البريد الالكتروني" type="text" name="email" value="{{ $user->email }}">
+                                        <p class="mg-b-10">{{ trans('user.email') }} </p>
+                                        <input class="form-control @error('email') is-invalid @enderror" placeholder="{{ trans('user.email') }} " type="text" name="email" value="{{ $user->email }}">
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -56,8 +56,8 @@
 
                                 <div class="col-md-12 mg-t-10 mg-md-t-0"  id="address">
                                     <div class="form-group">
-                                        <p class="mg-b-10">العنوان</p>
-                                        <input class="form-control @error('address') is-invalid @enderror" placeholder="العنوان" type="text" name="address" value="{{ $user->address }}">
+                                        <p class="mg-b-10">{{ trans('user.address') }}</p>
+                                        <input class="form-control @error('address') is-invalid @enderror" placeholder="{{ trans('user.address') }}" type="text" name="address" value="{{ $user->address }}">
                                         @error('address')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -68,8 +68,8 @@
 
                                 <div class="col-md-12 mg-t-10 mg-md-t-0">
                                     <div class="form-group">
-                                        <p class="mg-b-10">الهاتف</p>
-                                        <input class="form-control @error('phone') is-invalid @enderror" placeholder="الهاتف" type="text" name="phone" value="{{ $user->phone }}">
+                                        <p class="mg-b-10">{{ trans('user.phone') }}</p>
+                                        <input class="form-control @error('phone') is-invalid @enderror" placeholder="{{ trans('user.phone') }}" type="text" name="phone" value="{{ $user->phone }}">
                                         @error('phone')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -80,8 +80,8 @@
 
                                 <div class="col-md-12 mg-t-10 mg-md-t-0">
                                     <div class="form-group">
-                                        <p class="mg-b-10">كلمة المرور</p>
-                                        <input class="form-control @error('password') is-invalid @enderror" placeholder="كلمة المرور" type="text" name="password" value="{{ old('password') }}">
+                                        <p class="mg-b-10">{{ trans('user.password') }}</p>
+                                        <input class="form-control @error('password') is-invalid @enderror" placeholder="{{ trans('user.password') }}" type="text" name="password" value="{{ old('password') }}">
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -93,7 +93,7 @@
 
 
                                 <div class="col-md mt-4 mt-xl-0">
-                                    <button class="btn btn-main-primary btn-block">تعديل</button>
+                                    <button class="btn btn-main-primary btn-block">{{ trans('dashboard.edit') }}</button>
                                 </div>
                             </div>
                         </div>

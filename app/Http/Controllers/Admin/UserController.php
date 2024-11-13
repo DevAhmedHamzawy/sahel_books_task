@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
 use App\Models\User;
 use App\Upload\Upload;
 use Illuminate\Http\Request;
@@ -48,18 +49,8 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-
-        $validator = Validator::make($request->all(), ['name' => 'required', 'email' => 'required|email|unique:users,email', 'address' => 'required' , 'phone' => ['required','regex:/^(009665|9665|\+9665|05|5)(5|0|3|6|4|9|1|8|7)([0-9]{7})$/']  ,'password' => 'required|min:6|max:25' , 'main_image' => 'mimes:jpeg,jpg,png,gif|required|max:10000']);
-
-        if($validator->fails()){
-
-            toastr()->error(trans('users.errors'));
-
-            return redirect()->back()->withInput()->withErrors($validator);
-        }
-
         $request->merge(['password' => bcrypt($request->password), 'image' =>  Upload::uploadImage($request->main_image, 'users' , $request->name)]);
         $user = User::create($request->except('main_image'));
 
@@ -88,21 +79,8 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UserRequest $request, User $user)
     {
-        $validator = Validator::make($request->all(), ['name' => 'required', 'email' => 'required|email|unique:users,email,'.$user->id.',id', 'address' => 'required' , 'phone' => ['required','regex:/^(009665|9665|\+9665|05|5)(5|0|3|6|4|9|1|8|7)([0-9]{7})$/'] , 'main_image' => 'mimes:jpeg,jpg,png,gif|sometimes|max:10000']);
-
-        if($request->password != null)
-        {
-            $validator = Validator::make($request->all(), ['password' => 'sometimes|min:6|max:25']);
-        }
-
-        if($validator->fails()){
-            toastr()->error(trans('users.errors'));
-
-            return redirect()->back()->withErrors($validator);
-        }
-
         if($request->password != null){
             $request->merge(['password' => bcrypt($request->password)]);
         }else{
