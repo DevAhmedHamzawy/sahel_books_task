@@ -64,7 +64,7 @@
                                                     {{ trans('admin.role') }}
                                                 </option>
                                                 @foreach ($roles as $role)
-                                                    <option value="{{ $role->name }}" {{ $admin->roles->pluck('name')[0] == $role->id?'selected':'' }}>
+                                                    <option value="{{ $role->name }}" {{ $admin->roles->pluck('id')[0] == $role->id?'selected':'' }}>
                                                         {{ $role->name }}
                                                     </option>
                                                 @endforeach
