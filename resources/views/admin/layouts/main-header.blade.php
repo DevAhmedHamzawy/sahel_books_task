@@ -262,8 +262,8 @@
 									<a class="dropdown-item" href=""><i class="bx bxs-inbox"></i>Inbox</a>
 									<a class="dropdown-item" href=""><i class="bx bx-envelope"></i>Messages</a>
 									<a class="dropdown-item" href=""><i class="bx bx-slider-alt"></i> Account Settings</a>--}}
-									<a class="dropdown-item" href="{{ route('logout') }}" style="margin-top:5px;" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="bx bx-log-out"></i>{{ trans('dashboard.sign_out') }}</a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+									<a class="dropdown-item" href="{{ route('admin.logout') }}" style="margin-top:5px;" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="bx bx-log-out"></i>{{ trans('dashboard.sign_out') }}</a>
+                                    <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
 								</div>

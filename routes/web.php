@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ActivityLogController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminPanelController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\LocalizationController;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,9 @@ Route::group(['prefix' => '/admin', 'middleware' => 'assign.guard:admin,admin/lo
 
     Route::resource('roles', RoleController::class);
     Route::resource('admins', AdminController::class);
+
+    // Users
+    Route::resource('users', UserController::class);
 
 
     Route::get('activity_logs', [ActivityLogController::class, 'index'])->name('activity_logs');

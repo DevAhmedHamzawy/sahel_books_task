@@ -20,6 +20,10 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone',
+        'address',
+        'image',
+        'token',
         'password',
     ];
 
@@ -42,4 +46,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function getImgPathAttribute()
+    {
+        return $this->image !== null ? url('storage/users/'.$this->image) :  url('assets/img/user_default.png');
+    }
+
 }
