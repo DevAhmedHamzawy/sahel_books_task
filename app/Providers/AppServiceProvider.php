@@ -19,6 +19,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        view()->composer('*', function ($view)
+        {
+            $view->with('locale', \Session::get('locale') );
+        });
     }
 }
