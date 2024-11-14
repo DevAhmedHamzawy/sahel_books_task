@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Admin;
+use App\Models\ExchangeStore;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -18,7 +19,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        \App\Models\User::factory(1)->create();
+        /*\App\Models\User::factory(1)->create();
 
         $admin = Admin::create(['name' => 'admin', 'email' => 'admin@admin.com', 'email_verified_at' => now(), 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'remember_token' => Str::random(10), 'created_at' => now()]);
 
@@ -102,7 +103,13 @@ class DatabaseSeeder extends Seeder
         $role->givePermissionTo('view_activity_log');
 
 
-        $admin->assignRole($role);
+        $admin->assignRole($role);*/
+
+        if(ExchangeStore::count() < 10){
+            ExchangeStore::factory(10)->create();
+        }
+
+        $this->call(ProductSeeder::class);
 
     }
 }

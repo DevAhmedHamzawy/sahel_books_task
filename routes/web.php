@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ActivityLogController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminPanelController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AdminLoginController;
@@ -40,6 +41,8 @@ Route::group(['prefix' => '/admin', 'middleware' => 'assign.guard:admin,admin/lo
 
     // Users
     Route::resource('users', UserController::class);
+
+    Route::resource('products', ProductController::class)->only(['index']);
 
 
     Route::get('activity_logs', [ActivityLogController::class, 'index'])->name('activity_logs');
