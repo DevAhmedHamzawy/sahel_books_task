@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\LocalizationController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -66,3 +67,12 @@ Route::group(['prefix' => '/admin', 'middleware' => 'assign.guard:admin,admin/lo
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/storage_link', function () {
+    Artisan::call('storage:link');
+});
+
+Route::get('/optimize-clear', function () {
+    Artisan::call('optimize:clear');
+    return 'Optimization cache cleared!';
+});
