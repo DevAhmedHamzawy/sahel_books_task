@@ -51,14 +51,15 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $request->merge(['password' => bcrypt($request->password), 'image' =>  Upload::uploadImage($request->main_image, 'users' , $request->name)]);
+        if($request->has('main_image')) $request->merge(['password' => bcrypt($request->password), 'image' =>  Upload::uploadImage($request->main_image, 'users' , $request->name)]);
+
         $user = User::create($request->except('main_image'));
 
         activity()->log('قام '.auth()->user()->name.'باضافة مستخدم جديد'.$user->name);
 
         toastr()->success(trans('users.add_success'));
 
-        return redirect()->route('users.index');
+        return $request->ajax() ? response()->json(['success' => true, 'message' => trans('user.add_success'), 'user' => $user]) : redirect()->route('users.index');
     }
 
      /**
@@ -120,6 +121,11 @@ class UserController extends Controller
         toastr()->success(trans('users.deleted_success'));
 
         return redirect()->route('users.index');
+    }
+
+    public function invoices(User $user)
+    {
+        return view('admin.users.invoices', ['user' => $user]);
     }
 
 }

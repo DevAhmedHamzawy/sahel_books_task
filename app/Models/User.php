@@ -52,4 +52,9 @@ class User extends Authenticatable
         return $this->image !== null ? url('storage/users/'.$this->image) :  url('assets/img/user_default.png');
     }
 
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class, 'client_id');
+    }
+
 }

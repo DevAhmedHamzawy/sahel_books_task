@@ -44,3 +44,14 @@
 
     @break
 @endswitch
+
+<style>
+    .form-control:disabled{
+                background-color: #f1f1f1 !important;
+                border: 1px solid #f1f1f1 !important;
+    }
+
+    .main-body, .main-dashboard {
+        overflow-y: scroll !important;
+    }
+</style>

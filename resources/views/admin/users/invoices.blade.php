@@ -9,7 +9,7 @@
 @endsection
 
 @section('title')
-    المستخدمين
+    Admins
 @endsection
 
 @section('content')
@@ -20,8 +20,7 @@
         <div class="card mg-b-20">
             <div class="card-header pb-0">
                 <div class="d-flex justify-content-between">
-                    <h4 class="card-title mg-b-0">{{ trans('user.users') }}</h4>
-                    <div class="btn btn-primary"><a class="text-white" href="{{ route('users.create') }}">{{ trans('user.add_new_user') }}</a></div>
+                    <h4 class="card-title mg-b-0">فواتير العميل {{ $user->name }}</h4>
                 </div>
             </div>
             <div class="card-body">
@@ -29,39 +28,29 @@
                     <table id="example" class="table key-buttons text-md-nowrap">
                         <thead>
                             <tr>
-                                <th class="border-bottom-0">{{ trans('dashboard.image') }}</th>
-                                <th class="border-bottom-0">{{ trans('dashboard.name') }}</th>
-                                @canany(['view_user', 'edit_user', 'delete_user'])
+                                <th class="border-bottom-0">اسم العميل</th>
+                                <th class="border-bottom-0">رقم الفاتورة</th>
+                                @canany(['view_invoice', 'edit_invoice', 'delete_invoice'])
                                     <th class="border-bottom-0">{{ trans('dashboard.actions') }}</th>
                                 @endcanany
                                 <th class="border-bottom-0">{{ trans('dashboard.created') }}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($users as $user)
+                            @foreach ($user->invoices as $invoice)
                                 <tr>
-                                    <td><img width="50" height="50" src="{{ $user->img_path }}" alt="" srcset=""></td>
-                                    <td>{{ $user->name }}</td>
-                                    @canany(['view_user', 'edit_user', 'delete_user'])
+                                    <td>{{ $invoice->client->name }}</td>
+                                    <td>{{ $invoice->invoice_number }}</td>
+                                    @canany(['view_invoice', 'edit_invoice', 'delete_invoice'])
                                         <td class="row pl-3">
-                                                @can('view_user')
-                                                    <a href="{{ route('users.invoices', $user->id) }}" class="btn btn-info">{{ trans('dashboard.view_invoices') }}</a>
-                                                @endcan
+                                            @can('view_invoice')
+                                                <a href="{{ route('invoices.download', $invoice->id) }}" class="btn btn-success">تحميل الفاتورة كـ PDF</a>
                                                 &nbsp;&nbsp;
-                                                @can('edit_user')
-                                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning">{{ trans('dashboard.edit') }}</a>
-                                                @endcan
-                                            &nbsp;&nbsp;
-                                                @can('delete_user')
-                                                <form class="pl-3" action="{{ route('users.destroy', $user->id) }}" method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="btn btn-danger" type="submit">{{ trans('dashboard.delete') }}</button>
-                                                </form>
-                                                @endcan
+                                                <a href="{{ route('invoices.show', $invoice->id) }}" class="btn btn-info">{{ trans('dashboard.view') }}</a>
+                                            @endcan
                                         </td>
                                     @endcanany
-                                    <td>{{ $user->created_at->diffForHumans() }}</td>
+                                    <td>{{ $invoice->created_at->diffForHumans() }}</td>
                                 </tr>
                             @endforeach
 
