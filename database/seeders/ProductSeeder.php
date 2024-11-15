@@ -17,7 +17,7 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        /*$items = ['خيار', 'طماطم' , 'بطاطس' , 'جزر' , 'فلفل' , 'زيتون' , 'لمون' , 'برتقال' , 'موز' , 'عدس' , 'تمر' , 'يوسفى' , 'بلح' , 'بطيخ' , 'برقوق' , 'كوسة' , 'رز' , 'بسلة' , 'مشمش' , 'تفاح'];
+        $items = ['خيار', 'طماطم' , 'بطاطس' , 'جزر' , 'فلفل' , 'زيتون' , 'لمون' , 'برتقال' , 'موز' , 'عدس' , 'تمر' , 'يوسفى' , 'بلح' , 'بطيخ' , 'برقوق' , 'كوسة' , 'رز' , 'بسلة' , 'مشمش' , 'تفاح'];
 
         $units = ['كيلو', 'ربع كيلو' , 'نص كيلو' , 'ثلاثة ارباع كيلو' , 'حبة'];
 
@@ -31,7 +31,7 @@ class ProductSeeder extends Seeder
             Unit::updateOrCreate(['name' => $unit] , ['name' => $unit]);
         }
 
-        */
+
 
         $exchangeStores = ExchangeStore::inRandomOrder()->pluck('id');
         $items = Item::inRandomOrder()->pluck('id');
