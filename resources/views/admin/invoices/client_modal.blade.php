@@ -7,36 +7,36 @@
 
             <div class="col-md-12 mg-t-10 mg-md-t-0">
                 <div class="form-group">
-                    <p class="mg-b-10">{{ trans('user.name') }}</p>
-                    <input class="form-control" placeholder="{{ trans('user.name') }}" type="text" id="name">
+                    <p class="mg-b-10">الاسم</p>
+                    <input class="form-control" placeholder="الاسم" type="text" id="name">
                 </div>
             </div>
 
             <div class="col-md-12 mg-t-10 mg-md-t-0">
                 <div class="form-group">
-                    <p class="mg-b-10">{{ trans('user.email') }}</p>
-                    <input class="form-control" placeholder="{{ trans('user.email') }}" type="text" id="email">
+                    <p class="mg-b-10">البريد الالكتروني</p>
+                    <input class="form-control" placeholder="البريد الالكتروني" type="text" id="email">
                 </div>
             </div>
 
             <div class="col-md-12 mg-t-10 mg-md-t-0">
                 <div class="form-group">
-                    <p class="mg-b-10">{{ trans('user.address') }}</p>
-                    <input class="form-control" placeholder="{{ trans('user.address') }}" type="text" id="address">
+                    <p class="mg-b-10">العنوان</p>
+                    <input class="form-control" placeholder="العنوان" type="text" id="address">
                 </div>
             </div>
 
             <div class="col-md-12 mg-t-10 mg-md-t-0">
                 <div class="form-group">
-                    <p class="mg-b-10">{{ trans('user.phone') }}</p>
-                    <input class="form-control" placeholder="{{ trans('user.phone') }}" type="text" id="phone">
+                    <p class="mg-b-10">الهاتف</p>
+                    <input class="form-control" placeholder="الهاتف" type="text" id="phone">
                 </div>
             </div>
 
             <div class="col-md-12 mg-t-10 mg-md-t-0">
                 <div class="form-group">
-                    <p class="mg-b-10">{{ trans('user.password') }}</p>
-                    <input class="form-control" placeholder="{{ trans('user.password') }}" type="text" id="password" value="{{ old('password') }}">
+                    <p class="mg-b-10">كلمة المرور</p>
+                    <input class="form-control" placeholder="كلمة المرور" type="text" id="password" value="{{ old('password') }}">
                 </div>
             </div>
 

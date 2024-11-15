@@ -10,12 +10,12 @@
 
 @section('content')
     <!-- row -->
-    <div class="row">
+    <div class="row" dir="rtl" style="font-family: 'Cairo', sans-serif !important">
         <div class="col-lg-12 col-md-12">
             <div class="card">
                 <div class="card-body">
                     <div class="main-content-label mg-b-5">
-                        {{ trans('invoice.add_new_invoice') }}
+                        إضافة فاتورة جديدة
                     </div>
                     <form action="{{ route('invoices.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
@@ -26,7 +26,7 @@
                                     <div class="col-lg-6">
                                         <div class="bg-gray-200">
                                             <div class="form-group">
-                                                <p class="mg-b-10">{{ trans('invoice.client_name') }}</p>
+                                                <p class="mg-b-10">إسم العميل</p>
                                                 <select name="client_id" id="client_id" class="form-control">
 
                                                     <option value="">اختر الإسم ...</option>
@@ -46,7 +46,7 @@
                                     <div class="col-lg-6">
                                         <div class="bg-gray-200">
                                             <div class="form-group">
-                                                <p class="mg-b-10">{{ trans('invoice.client_address') }}</p>
+                                                <p class="mg-b-10">عنوان العميل</p>
                                                 <input type="text" name="client_address" class="form-control" id="client_address" placeholder="عنوان العميل">
                                             </div>
                                         </div>
@@ -62,9 +62,7 @@
 
 
 
-                                <div class="col-md mt-4 mt-xl-0">
-                                    <button class="btn btn-main-primary btn-block">{{ trans('dashboard.add') }}</button>
-                                </div>
+
                             </div>
 
                             <div class="row row-xs mg-t-20">
@@ -73,7 +71,7 @@
                                 <div class="col-lg-6">
                                     <div class="bg-gray-200">
                                         <div class="form-group">
-                                            <p class="mg-b-10">{{ trans('invoice.invoice_date') }}</p>
+                                            <p class="mg-b-10">تاريخ الفاتورة</p>
                                             <input type="date" name="invoice_date" class="form-control" placeholder="تاريخ الفاتورة">
                                         </div>
                                     </div>
@@ -82,7 +80,7 @@
                                 <div class="col-lg-6">
                                     <div class="bg-gray-200">
                                         <div class="form-group">
-                                            <p class="mg-b-10">{{ trans('invoice.due_date') }}</p>
+                                            <p class="mg-b-10">تاريخ الاستحقاق</p>
                                             <input type="date" name="due_date" class="form-control" placeholder="تاريخ الاستحقاق">
                                         </div>
                                     </div>
@@ -200,7 +198,7 @@
                                 <thead style="background-color: #0099ff;color: #fff;">
                                   <tr>
                                     <th>#</th>
-                                    <th>الصنف</th>
+                                    <th>مخزن الصرف</th>
                                     <th>السلعه</th>
                                     <th>الوحده</th>
                                     <th>سعر الوحدة</th>

@@ -29,8 +29,8 @@
                     <table id="example" class="table key-buttons text-md-nowrap">
                         <thead>
                             <tr>
-                                <th class="border-bottom-0">اسم العميل</th>
-                                <th class="border-bottom-0">رقم الفاتورة</th>
+                                <th class="border-bottom-0">{{ trans('invoice.client_name') }}</th>
+                                <th class="border-bottom-0">{{ trans('invoice.invoice_number') }} </th>
                                 @canany(['view_invoice', 'edit_invoice', 'delete_invoice'])
                                     <th class="border-bottom-0">{{ trans('dashboard.actions') }}</th>
                                 @endcanany
@@ -45,9 +45,9 @@
                                     @canany(['view_invoice', 'edit_invoice', 'delete_invoice'])
                                         <td class="row pl-3">
                                             @can('view_invoice')
-                                                <a href="{{ route('invoices.download', $invoice->id) }}" class="btn btn-success">تحميل الفاتورة كـ PDF</a>
+                                                <a href="{{ route('invoices.download', $invoice->id) }}" class="btn btn-success">{{ trans('invoice.pdf') }}</a>
                                                 &nbsp;&nbsp;
-                                                <a href="{{ route('invoices.show', $invoice->id) }}" class="btn btn-info">{{ trans('dashboard.view') }}</a>
+                                                <a href="{{ route('invoices.show', $invoice->id) }}" class="btn btn-info">{{ trans('invoice.view') }}</a>
                                             @endcan
                                             &nbsp;&nbsp;
                                             @can('edit_invoice')

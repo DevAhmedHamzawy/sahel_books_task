@@ -31,6 +31,9 @@
                             <tr>
                                 <th class="border-bottom-0">{{ trans('dashboard.image') }}</th>
                                 <th class="border-bottom-0">{{ trans('dashboard.name') }}</th>
+                                <th class="border-bottom-0">{{ trans('user.email') }}</th>
+                                <th class="border-bottom-0">{{ trans('user.phone') }}</th>
+                                <th class="border-bottom-0">{{ trans('user.address') }}</th>
                                 @canany(['view_user', 'edit_user', 'delete_user'])
                                     <th class="border-bottom-0">{{ trans('dashboard.actions') }}</th>
                                 @endcanany
@@ -42,6 +45,9 @@
                                 <tr>
                                     <td><img width="50" height="50" src="{{ $user->img_path }}" alt="" srcset=""></td>
                                     <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->phone }}</td>
+                                    <td>{{ $user->address }}</td>
                                     @canany(['view_user', 'edit_user', 'delete_user'])
                                         <td class="row pl-3">
                                                 @can('view_user')

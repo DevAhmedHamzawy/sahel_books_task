@@ -20,7 +20,7 @@
         <div class="card mg-b-20">
             <div class="card-header pb-0">
                 <div class="d-flex justify-content-between">
-                    <h4 class="card-title mg-b-0">{{ trans('products.products') }}</h4>
+                    <h4 class="card-title mg-b-0">{{ trans('product.products') }}</h4>
                 </div>
             </div>
             <div class="card-body">
@@ -28,10 +28,10 @@
                     <table id="example" class="table key-buttons text-md-nowrap">
                         <thead>
                             <tr>
-                                <th class="border-bottom-0">{{ trans('products.exchange_store') }}</th>
-                                <th class="border-bottom-0">{{ trans('products.item') }}</th>
-                                <th class="border-bottom-0">{{ trans('products.unit') }}</th>
-                                <th class="border-bottom-0">{{ trans('products.price') }}</th>
+                                <th class="border-bottom-0">{{ trans('product.exchange_stores') }}</th>
+                                <th class="border-bottom-0">{{ trans('product.items') }}</th>
+                                <th class="border-bottom-0">{{ trans('product.units') }}</th>
+                                <th class="border-bottom-0">{{ trans('product.prices') }}</th>
                                 <th class="border-bottom-0">{{ trans('dashboard.created_at') }}</th>
                             </tr>
                         </thead>

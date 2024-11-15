@@ -12,6 +12,8 @@
 <!-- Maps css -->
 <link href="{{URL::asset('assets/plugins/jqvmap/jqvmap.min.css')}}" rel="stylesheet">
 
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap" rel="stylesheet">
+
 @switch($locale)
     @case('en')
         <!-- Sidemenu css -->
@@ -34,16 +36,16 @@
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap" rel="stylesheet">
 
         <style>
-            body{
-                font-family: 'Cairo', sans-serif !important;
-            }
+             body{
+                    font-family: 'Cairo', sans-serif !important;
+             }
         </style>
 
     @break
 @endswitch
+
 
 <style>
     .form-control:disabled{

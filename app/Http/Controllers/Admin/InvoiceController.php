@@ -65,13 +65,17 @@ class InvoiceController extends Controller
              'product_id' => $request->product_ids[$i],
              'product_price' => $request->unit_prices[$i],
              'qty' => $request->qtys[$i],
-             'discount_sort' => $request->discount_sorts[$i],
+             'discount_sort' => $request->discount_sorts[$i] == 'نوع الخصم' ? null : $request->discount_sorts[$i],
              'discount' => $discount_amount,
              'sub_total' => $request->prices_after_discount[$i],
              'vat' => $request->vats_to_pay[$i],
              'total' => $request->total_prices[$i]
             ]);
         }
+
+        toastr()->success(trans('invoice.added_success'));
+
+        return redirect()->route('invoices.index');
     }
 
     /**
@@ -127,13 +131,17 @@ class InvoiceController extends Controller
              'product_id' => $request->product_ids[$i],
              'product_price' => $request->unit_prices[$i],
              'qty' => $request->qtys[$i],
-             'discount_sort' => $request->discount_sorts[$i],
+             'discount_sort' => $request->discount_sorts[$i] == 'نوع الخصم' ? null : $request->discount_sorts[$i],
              'discount' => $discount_amount,
              'sub_total' => $request->prices_after_discount[$i],
              'vat' => $request->vats_to_pay[$i],
              'total' => $request->total_prices[$i]
             ]);
         }
+
+        toastr()->success(trans('invoice.updated_success'));
+
+        return redirect()->route('invoices.index');
     }
 
     /**

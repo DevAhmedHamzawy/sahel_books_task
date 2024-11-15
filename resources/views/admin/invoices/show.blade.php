@@ -10,7 +10,7 @@
 
 @section('content')
     <!-- row -->
-    <div class="row">
+    <div class="row" dir="rtl" style="font-family: 'Cairo', sans-serif !important">
         <div class="col-lg-12 col-md-12">
             <div class="card">
                 <div class="card-body">
@@ -25,16 +25,9 @@
                                     <div class="col-lg-6">
                                         <div class="bg-gray-200">
                                             <div class="form-group">
-                                                <p class="mg-b-10">{{ trans('invoice.client_name') }}</p>
-                                                <select name="client_id" id="client_id" class="form-control">
+                                                <p class="mg-b-10">إسم العميل</p>
 
-                                                    <option value="">اختر الإسم ...</option>
-
-                                                    @foreach ($users as $user)
-                                                        <option value="{{ $user->id }}" @if ($user->id == $invoice->client_id) selected @endif>{{ $user->name }}</option>
-                                                    @endforeach
-
-                                                </select>
+                                                <input type="text" name="client_name" class="form-control" id="client_name" value="{{ $invoice->client->name }}" disabled>
 
                                             </div>
                                         </div>
@@ -44,25 +37,12 @@
                                     <div class="col-lg-6">
                                         <div class="bg-gray-200">
                                             <div class="form-group">
-                                                <p class="mg-b-10">{{ trans('invoice.client_address') }}</p>
-                                                <input type="text" name="client_address" class="form-control" id="client_address" value="{{ $invoice->client_address }}" placeholder="عنوان العميل">
+                                                <p class="mg-b-10">العنوان</p>
+                                                <input type="text" name="client_address" class="form-control" id="client_address" value="{{ $invoice->client_address }}" disabled>
                                             </div>
                                         </div>
                                     </div>
 
-
-
-
-
-                                    @include('admin.invoices.client_modal')
-
-
-
-
-
-                                <div class="col-md mt-4 mt-xl-0">
-                                    <button class="btn btn-main-primary btn-block">{{ trans('dashboard.add') }}</button>
-                                </div>
                             </div>
 
                             <div class="row row-xs mg-t-20">
@@ -71,8 +51,8 @@
                                 <div class="col-lg-6">
                                     <div class="bg-gray-200">
                                         <div class="form-group">
-                                            <p class="mg-b-10">{{ trans('invoice.invoice_date') }}</p>
-                                            <input type="date" name="invoice_date" value="{{ $invoice->invoice_date }}" class="form-control" placeholder="تاريخ الفاتورة">
+                                            <p class="mg-b-10">تاريخ الفاتورة</p>
+                                            <input type="date" name="invoice_date" value="{{ $invoice->invoice_date }}" class="form-control" disabled>
                                         </div>
                                     </div>
                                 </div>
@@ -80,125 +60,20 @@
                                 <div class="col-lg-6">
                                     <div class="bg-gray-200">
                                         <div class="form-group">
-                                            <p class="mg-b-10">{{ trans('invoice.due_date') }}</p>
-                                            <input type="date" name="due_date" value="{{ $invoice->due_date }}" class="form-control" placeholder="تاريخ الاستحقاق">
+                                            <p class="mg-b-10">تاريخ الاستحقاق</p>
+                                            <input type="date" name="due_date" value="{{ $invoice->due_date }}" class="form-control" disabled>
                                         </div>
                                     </div>
                                 </div>
 
 
-                            </div>
-
-                            <div class="row row-xs mg-t-20">
-
-                                <div class="col-lg-2">
-                                    <div class="bg-gray-200">
-                                        <div class="form-group">
-                                            <select name="exchange_store_id" id="exchange_store_id" class="form-control">
-
-                                                <option>مخزن الصرف<option>
-
-                                                @foreach ($exchange_stores as $exchange_store)
-                                                    <option value="{{ $exchange_store->id }}">{{ $exchange_store->name }}</option>
-                                                @endforeach
-
-                                            </select>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-2">
-                                    <div class="bg-gray-200">
-                                        <div class="form-group">
-                                            <select name="item_id" id="item_id" class="form-control">
-
-                                                <option>السلعة</option>
-
-                                                @foreach ($items as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                                @endforeach
-
-                                            </select>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-2">
-                                    <div class="bg-gray-200">
-                                        <div class="form-group">
-                                            <select name="unit_id" id="unit_id" class="form-control">
-
-                                                <option>الوحدة</option>
-
-                                                @foreach ($units as $unit)
-                                                    <option value="{{ $unit->id }}">{{ $unit->name }}</option>
-                                                @endforeach
-
-                                            </select>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-2">
-                                    <input id="qty" type="text" placeholder="الكمية" class="form-control" >
-                                </div>
-
-                                <div class="col-md-2">
-                                    <input id="unit_price" type="text" placeholder="سعر الوحدة" class="form-control" id="input-disabled" disabled>
-                                </div>
-
-                                <div class="col-md-2">
-                                    <input id="price" type="text" placeholder="السعر" class="form-control" id="input-disabled" disabled>
-                                </div>
-
-                            </div>
-
-                            <div class="row row-xs">
-
-                                <div class="col-lg-4">
-                                    <div class="bg-gray-200">
-                                        <div class="form-group">
-                                            <select name="discount_sort" onchange="getDiscountPercentage()" class="form-control" id="discount_sort">
-                                                <option value="-1" selected disabled>نوع الخصم</option>
-                                                <option value="0">نسبة</option>
-                                                <option value="1">مبلغ</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-                                <div class="col-lg-4">
-                                    <div class="bg-gray-200">
-                                        <div class="form-group">
-                                            <select name="discount_amount" class="form-control" id="discount_amount">
-                                                <option value="0" selected disabled>نسبة الخصم</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <input id="price_after_discount" type="text" placeholder="السعر بعد الخصم" class="form-control" id="input-disabled" disabled>
-                                </div>
-
-
-                            </div>
-
-
-                            <div class="row row-xs">
-                                <div onclick="addItem()" class="btn btn-primary col-md-10 mx-auto">اضافة</div>
                             </div>
 
                             <table class="table mt-4 mx-auto">
                                 <thead style="background-color: #0099ff;color: #fff;">
                                   <tr>
                                     <th>#</th>
-                                    <th>الصنف</th>
+                                    <th>مخزن الصرف</th>
                                     <th>السلعه</th>
                                     <th>الوحده</th>
                                     <th>سعر الوحدة</th>

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->integer('product_price');
             $table->integer('qty');
-            $table->enum('discount_sort', ['نسبة' , 'مبلغ']);
+            $table->enum('discount_sort', ['نسبة' , 'مبلغ'])->nullable();
             $table->integer('discount');
             $table->decimal('sub_total', 9 , 3);
             $table->decimal('vat', 9 , 3);
